@@ -21,18 +21,20 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 function validateInput(testInput) {
     
     let numberInput = Number(testInput);
+    let status;
 
-    if(testInput === ""){
-        return "Empty";
+    if(testInput === " "){
+        status = "Empty";
     }
 
     else if(isNaN(numberInput)){
-        return "Not a Number";
+        status = "Not a Number";
     }
 
     else if(isNaN(numberInput)=== false){
-        return "Is a Number";
+        status = "Is a Number";
     }
+    return status;
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
@@ -41,6 +43,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     let copilotStatus = document.querySelector("input[name=copilotName]");
     let fuelStatus = document.querySelector("input[name=fuelLevel]");
     let cargoStatus = document.querySelector("input[name=cargoMass]");
+    let launchStatus = document.getElementById("launchStatus");
 
     if(validateInput(pilot) === "Empty" || validateInput(copilot) === "Empty" || validateInput(fuelLevel) === "Empty" || validateInput(cargoLevel) === "Empty"){
         alert("All fields are required");
@@ -58,8 +61,6 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         list.style.visibility = "visible";
         pilotStatus.innerHTML = `Pilot ${pilot} is ready for launch`;
         copilotStatus.innerHTML = `Copilot ${copilot} is ready for launch`;
-
-        let launchStatus = document.getElementById("launchStatus");
 
         if(fuelLevel < 10000  && cargoLevel <= 10000){
             fuelStatus.innerHTML = "Fuel level too low for launch";
@@ -95,7 +96,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 async function myFetch() {
     let planetsReturned;
 
-    planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
+    planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response) {
         return response.json();
         });
 

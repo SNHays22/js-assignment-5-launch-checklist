@@ -15,12 +15,13 @@ window.addEventListener("load", function() {
        // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
         let planet = pickPlanet(listedPlanets);
 
-        return addDestinationInfo(document, planet.name, planet.diameter, planet.star, planet.distance, planet.moons, planet.image);
+        addDestinationInfo(document, planet.name, planet.diameter, planet.star, planet.distance, planet.moons, planet.image);
         
-    });
+    })
 
-    let form = document.getElementsByTagName("form");
-    form.addEventListener("submit", function(event){
+    //let form = document.querySelector("form");
+    let formButton = document.getElementById('formSubmit');
+    formButton.addEventListener("submit", function(event){
 
         event.preventDefault();
 
@@ -40,7 +41,9 @@ window.addEventListener("load", function() {
 
         
         formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel);
+
+        //event.preventDefault();
         
-    });
+    })
 
 });
